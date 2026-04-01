@@ -343,6 +343,15 @@ section {
   line-height: 1.6;
 }
 
+.svc-card.svc-recovery {
+  grid-column: 1 / -1;
+  background: rgba(43,127,255,0.05);
+  border-top: 2px solid var(--blue);
+}
+
+.svc-name--blue { color: var(--blue); }
+.svc-desc--mt { margin-top: 10px; }
+
 .svc-card.featured {
   grid-column: 1 / -1;
   background: var(--blue-dim);
@@ -597,6 +606,16 @@ section {
 /* ── FORM ── */
 .form { display: flex; flex-direction: column; gap: 16px; }
 
+.form-input.error, .form-textarea.error { border-color: #ef4444; }
+.form-input.valid, .form-textarea.valid { border-color: rgba(43,127,255,0.5); }
+.field-error {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #ef4444;
+  letter-spacing: 1px;
+  min-height: 14px;
+}
+
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
 .form-group { display: flex; flex-direction: column; gap: 6px; }
@@ -718,7 +737,7 @@ footer {
     <li><a href="#portfolio">Projetos</a></li>
     <li><a href="#depoimentos">Clientes</a></li>
     <li><a href="#contato">Contato</a></li>
-    <li><a href="https://wa.me/5511991290185" class="nav-cta">WhatsApp</a></li>
+    <li><a href="https://wa.me/5511991290185" class="nav-cta" target="_blank" rel="noopener">WhatsApp</a></li>
   </ul>
 </nav>
 
@@ -737,7 +756,7 @@ footer {
     </h1>
     <p class="hero-sub">Suporte técnico especializado, desenvolvimento de sistemas e criação de sites sob medida. Atendimento presencial e remoto no ABC Paulista.</p>
     <div class="hero-actions">
-      <a href="https://wa.me/5511991290185" class="btn-primary">Falar no WhatsApp</a>
+      <a href="https://wa.me/5511991290185" class="btn-primary" target="_blank" rel="noopener">Falar no WhatsApp</a>
       <a href="#portfolio" class="btn-outline">Ver Projetos</a>
     </div>
   </div>
@@ -819,12 +838,12 @@ footer {
       <div class="svc-desc">Orientação técnica para compra de equipamentos, segurança de dados, redes e infraestrutura de TI.</div>
     </div>
 
-    <div class="svc-card" style="grid-column:1/-1; background:rgba(43,127,255,0.05); border-top:2px solid var(--blue);">
+    <div class="svc-card svc-recovery">
       <svg class="svc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 10 L12 18 L4 26" stroke="#2b7fff" stroke-width="2" stroke-linecap="round" fill="none"/>
         <line x1="16" y1="26" x2="32" y2="26" stroke="#2b7fff" stroke-width="2" stroke-linecap="round"/>
       </svg>
-      <div class="svc-name" style="color:var(--blue);">RECUPERAÇÃO DE ARQUIVOS</div>
+      <div class="svc-name svc-name--blue">RECUPERAÇÃO DE ARQUIVOS</div>
       <div class="svc-desc">Recuperação de dados em HDs, SSDs e pendrives com técnicas avançadas. Diagnóstico gratuito.</div>
     </div>
 
@@ -832,7 +851,7 @@ footer {
       <div>
         <span class="featured-badge">Destaque</span>
         <div class="svc-name">SISTEMAS &amp; SITES SOB MEDIDA</div>
-        <div class="svc-desc" style="margin-top:10px;">Desenvolvimento completo de sistemas web, portais administrativos, automações e sites profissionais para o seu negócio.</div>
+        <div class="svc-desc svc-desc--mt">Desenvolvimento completo de sistemas web, portais administrativos, automações e sites profissionais para o seu negócio.</div>
       </div>
       <div class="featured-right">
         Sistemas de gestão, agendamento, controle de estoque, sites institucionais, landing pages e muito mais — entregues com suporte contínuo e sem complicação.
@@ -1024,24 +1043,27 @@ footer {
       </div>
     </div>
 
-    <form class="form" onsubmit="handleForm(event)">
+    <form class="form" id="contact-form" novalidate>
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Nome</label>
-          <input class="form-input" type="text" placeholder="Seu nome" required>
+          <label class="form-label" for="field-nome">Nome</label>
+          <input class="form-input" id="field-nome" name="nome" type="text" placeholder="Seu nome" autocomplete="name" required>
+          <span class="field-error" id="err-nome"></span>
         </div>
         <div class="form-group">
-          <label class="form-label">WhatsApp</label>
-          <input class="form-input" type="tel" placeholder="(11) 99999-9999">
+          <label class="form-label" for="field-tel">WhatsApp</label>
+          <input class="form-input" id="field-tel" name="tel" type="tel" placeholder="(11) 99999-9999" autocomplete="tel">
+          <span class="field-error" id="err-tel"></span>
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">Assunto</label>
-        <input class="form-input" type="text" placeholder="Ex: Preciso de um sistema para meu negócio" required>
+        <label class="form-label" for="field-assunto">Assunto</label>
+        <input class="form-input" id="field-assunto" name="assunto" type="text" placeholder="Ex: Preciso de um sistema para meu negócio" required>
+        <span class="field-error" id="err-assunto"></span>
       </div>
       <div class="form-group">
-        <label class="form-label">Mensagem</label>
-        <textarea class="form-textarea" placeholder="Descreva o que você precisa..."></textarea>
+        <label class="form-label" for="field-msg">Mensagem</label>
+        <textarea class="form-textarea" id="field-msg" name="mensagem" placeholder="Descreva o que você precisa..."></textarea>
       </div>
       <button type="submit" class="form-submit" id="submit-btn">Enviar Mensagem</button>
       <p class="form-note" id="form-note"></p>
@@ -1057,35 +1079,83 @@ footer {
 </footer>
 
 <script>
-function handleForm(e) {
+const WA_NUMBER = '5511991290185';
+
+// ── FORM ──
+const contactForm = document.getElementById('contact-form');
+
+function setFieldState(id, errId, valid, msg) {
+  const field = document.getElementById(id);
+  const err   = document.getElementById(errId);
+  field.classList.toggle('error', !valid);
+  field.classList.toggle('valid', valid);
+  err.textContent = valid ? '' : msg;
+}
+
+function validateField(field) {
+  if (field.id === 'field-nome') {
+    const ok = field.value.trim().length >= 2;
+    setFieldState('field-nome', 'err-nome', ok, 'Informe seu nome.');
+    return ok;
+  }
+  if (field.id === 'field-assunto') {
+    const ok = field.value.trim().length >= 4;
+    setFieldState('field-assunto', 'err-assunto', ok, 'Informe o assunto.');
+    return ok;
+  }
+  if (field.id === 'field-tel') {
+    const v = field.value.trim();
+    const ok = v === '' || /^[\d\s\(\)\-\+]{8,}$/.test(v);
+    setFieldState('field-tel', 'err-tel', ok, 'Número inválido.');
+    return ok;
+  }
+  return true;
+}
+
+contactForm.querySelectorAll('.form-input, .form-textarea').forEach(f => {
+  f.addEventListener('blur', () => validateField(f));
+  f.addEventListener('input', () => {
+    if (f.classList.contains('error')) validateField(f);
+  });
+});
+
+contactForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  const btn = document.getElementById('submit-btn');
+  const nome    = document.getElementById('field-nome');
+  const assunto = document.getElementById('field-assunto');
+  const tel     = document.getElementById('field-tel');
+  const msg     = document.getElementById('field-msg');
+
+  const valid = [nome, assunto, tel].map(f => validateField(f)).every(Boolean);
+  if (!valid) return;
+
+  const btn  = document.getElementById('submit-btn');
   const note = document.getElementById('form-note');
-  const form = e.target;
-  const nome = form.querySelector('input[type=text]').value;
-  const assunto = form.querySelectorAll('input[type=text]')[1]?.value || form.querySelector('input[placeholder*="sistema"]')?.value || '';
-  const msg = form.querySelector('textarea').value;
-  const tel = form.querySelector('input[type=tel]').value;
 
   btn.textContent = 'Enviando...';
+  btn.disabled = true;
   btn.style.opacity = '0.7';
 
   setTimeout(() => {
-    const texto = `Olá! Me chamo *${nome}*.\n\n*Assunto:* ${assunto}\n*Tel:* ${tel || 'Não informado'}\n\n${msg}`;
-    window.open('https://wa.me/5511991290185?text=' + encodeURIComponent(texto), '_blank');
+    const texto = `Olá! Me chamo *${nome.value.trim()}*.\n\n*Assunto:* ${assunto.value.trim()}\n*Tel:* ${tel.value.trim() || 'Não informado'}\n\n${msg.value.trim()}`;
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+
     btn.textContent = 'Mensagem Enviada!';
-    note.textContent = 'Você será redirecionado ao WhatsApp.';
-    note.style.color = '#2b7fff';
+    note.textContent = 'Você foi redirecionado ao WhatsApp.';
+    note.style.color = 'var(--blue)';
+
     setTimeout(() => {
       btn.textContent = 'Enviar Mensagem';
+      btn.disabled = false;
       btn.style.opacity = '1';
       note.textContent = '';
-      form.reset();
+      contactForm.reset();
+      contactForm.querySelectorAll('.form-input').forEach(f => f.classList.remove('valid', 'error'));
     }, 4000);
-  }, 800);
-}
+  }, 600);
+});
 
-// Scroll reveal leve
+// ── SCROLL REVEAL ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(el => {
     if (el.isIntersecting) {
