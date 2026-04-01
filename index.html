@@ -3,30 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LTech Informática — Sistemas, Sites e Suporte Técnico</title>
+<title>Lucas Martins — Desenvolvedor & LTech Informática</title>
+<meta name="description" content="Desenvolvedor web e especialista em suporte técnico. Sistemas sob medida, sites profissionais e suporte presencial e remoto no ABC Paulista.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ── TOKENS ── */
 :root {
-  --bg: #080e18;
-  --bg2: #0d1624;
-  --bg3: #111c2e;
-  --blue: #2b7fff;
-  --blue-dim: rgba(43,127,255,0.12);
+  /* backgrounds */
+  --bg:    #070d18;
+  --bg2:   #0b1423;
+  --bg3:   #101d30;
+  --bg4:   #152038;
+
+  /* blue — reserved for CTAs and primary interactions only */
+  --blue:      #2b7fff;
+  --blue-dim:  rgba(43,127,255,0.10);
   --blue-glow: rgba(43,127,255,0.06);
-  --amber: #f59e0b;
-  --amber-dim: rgba(245,158,11,0.1);
-  --white: #f0f4ff;
-  --muted: rgba(180,200,240,0.45);
-  --border: rgba(43,127,255,0.12);
-  --border-hover: rgba(43,127,255,0.35);
+
+  /* amber — secondary accent, used for metadata & highlights */
+  --amber:     #f59e0b;
+  --amber-dim: rgba(245,158,11,0.12);
+  --amber-glow:rgba(245,158,11,0.06);
+
+  /* neutral chrome — for borders, icons, structural elements */
+  --chrome:       rgba(180,210,255,0.10);
+  --chrome-hover: rgba(180,210,255,0.20);
+  --chrome-icon:  rgba(180,210,255,0.55);
+
+  /* text */
+  --white:  #eef2ff;
+  --muted:  rgba(180,200,240,0.65);   /* raised from 0.45 — WCAG AA */
+  --faint:  rgba(180,200,240,0.35);
+
+  /* semantic */
+  --border:       var(--chrome);
+  --border-hover: var(--chrome-hover);
+
+  /* fonts */
   --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+
+  /* radii */
+  --r: 4px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -43,14 +67,14 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 /* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
 
@@ -64,14 +88,14 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(8,14,24,0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(7,13,24,0.90);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--chrome);
 }
 
 .nav-logo {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 26px;
   letter-spacing: 2px;
   color: var(--white);
   text-decoration: none;
@@ -82,23 +106,24 @@ nav {
   display: flex;
   gap: 32px;
   list-style: none;
+  align-items: center;
 }
 .nav-links a {
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
   color: var(--muted);
   text-decoration: none;
   text-transform: uppercase;
   transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--blue); }
+.nav-links a:hover { color: var(--white); }
 
 .nav-cta {
-  background: var(--blue);
+  background: var(--blue) !important;
   color: #fff !important;
   padding: 8px 18px;
-  border-radius: 3px;
+  border-radius: var(--r);
   font-family: var(--font-mono) !important;
   font-size: 11px !important;
   letter-spacing: 1.5px !important;
@@ -121,54 +146,54 @@ nav {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(43,127,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(43,127,255,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(43,127,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43,127,255,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 .hero-glow {
   position: absolute;
-  width: 700px; height: 700px;
+  width: 800px; height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(43,127,255,0.1) 0%, transparent 65%);
-  top: -150px; right: -200px;
+  background: radial-gradient(circle, rgba(43,127,255,0.08) 0%, transparent 65%);
+  top: -200px; right: -250px;
   pointer-events: none;
 }
 .hero-glow2 {
   position: absolute;
-  width: 400px; height: 400px;
+  width: 500px; height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 65%);
-  bottom: -100px; left: -100px;
+  background: radial-gradient(circle, rgba(245,158,11,0.05) 0%, transparent 65%);
+  bottom: -150px; left: -150px;
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 820px;
 }
 
 .hero-tag {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 3px;
-  color: var(--blue);
+  color: var(--amber);
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 .hero-tag::before {
   content: '';
   width: 32px; height: 1px;
-  background: var(--blue);
+  background: var(--amber);
 }
 
 .hero-h1 {
   font-family: var(--font-display);
-  font-size: clamp(64px, 10vw, 110px);
+  font-size: clamp(64px, 10vw, 112px);
   line-height: 0.92;
   letter-spacing: 2px;
   color: var(--white);
@@ -183,9 +208,9 @@ nav {
   font-size: 18px;
   font-weight: 300;
   color: var(--muted);
-  max-width: 520px;
+  max-width: 540px;
   margin: 24px 0 40px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .hero-actions {
@@ -198,7 +223,7 @@ nav {
   background: var(--blue);
   color: #fff;
   padding: 14px 32px;
-  border-radius: 3px;
+  border-radius: var(--r);
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 2px;
@@ -207,14 +232,14 @@ nav {
   transition: opacity 0.2s, transform 0.2s;
   display: inline-block;
 }
-.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
 
 .btn-outline {
   background: transparent;
   color: var(--white);
   padding: 14px 32px;
-  border-radius: 3px;
-  border: 1px solid var(--border-hover);
+  border-radius: var(--r);
+  border: 1px solid var(--chrome-hover);
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 2px;
@@ -223,7 +248,7 @@ nav {
   transition: border-color 0.2s, color 0.2s, transform 0.2s;
   display: inline-block;
 }
-.btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+.btn-outline:hover { border-color: rgba(180,210,255,0.5); color: var(--white); transform: translateY(-2px); }
 
 .hero-stats {
   position: absolute;
@@ -232,41 +257,36 @@ nav {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
   z-index: 2;
 }
 
-.stat {
-  text-align: right;
-}
+.stat { text-align: right; }
 .stat-num {
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: 52px;
   color: var(--white);
   line-height: 1;
 }
 .stat-num span { color: var(--blue); }
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 /* ── SECTION BASE ── */
-section {
-  padding: 100px 5%;
-  position: relative;
-}
+section { padding: 100px 5%; position: relative; }
 
 .section-tag {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 3px;
-  color: var(--blue);
+  color: var(--amber);
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -274,15 +294,18 @@ section {
 .section-tag::before {
   content: '';
   width: 24px; height: 1px;
-  background: var(--blue);
+  background: var(--amber);
 }
 
+/* Section titles: DM Sans bold — professional, readable, company-grade */
 .section-title {
-  font-family: var(--font-display);
-  font-size: clamp(40px, 6vw, 68px);
-  line-height: 0.95;
-  letter-spacing: 1px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
   margin-bottom: 16px;
+  color: var(--white);
 }
 
 .section-desc {
@@ -290,11 +313,86 @@ section {
   font-weight: 300;
   color: var(--muted);
   max-width: 480px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
+/* ── SOBRE ── */
+#sobre { background: var(--bg2); }
+
+.sobre-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 56px;
+  align-items: start;
+}
+
+.sobre-bio {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.sobre-bio strong { color: var(--white); font-weight: 600; }
+
+.sobre-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sobre-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--chrome);
+  border-radius: var(--r);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 0.2s, color 0.2s;
+}
+.sobre-link:hover { border-color: var(--chrome-hover); color: var(--white); }
+.sobre-link svg { opacity: 0.6; flex-shrink: 0; }
+
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill-group-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.skill-pill {
+  background: var(--bg3);
+  border: 1px solid var(--chrome);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border-radius: var(--r);
+  transition: border-color 0.2s, color 0.2s;
+}
+.skill-pill:hover { border-color: var(--chrome-hover); color: var(--white); }
+
 /* ── SERVICES ── */
-#servicos { background: var(--bg2); }
+#servicos { background: var(--bg); }
 
 .services-layout {
   display: grid;
@@ -304,53 +402,52 @@ section {
   align-items: start;
 }
 
-.services-left { }
-
 .services-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  background: var(--chrome);
+  border: 1px solid var(--chrome);
   margin-top: 48px;
 }
 
 .svc-card {
-  background: var(--bg2);
+  background: var(--bg);
   padding: 28px 24px;
   transition: background 0.2s;
   cursor: default;
 }
-.svc-card:hover { background: var(--bg3); }
+.svc-card:hover { background: var(--bg2); }
 
 .svc-icon {
   width: 36px; height: 36px;
   margin-bottom: 14px;
-  opacity: 0.8;
+  color: var(--chrome-icon);
 }
 
 .svc-name {
-  font-family: var(--font-display);
-  font-size: 22px;
-  letter-spacing: 1px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
   color: var(--white);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  letter-spacing: 0;
 }
 
 .svc-desc {
   font-size: 13px;
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .svc-card.svc-recovery {
   grid-column: 1 / -1;
-  background: rgba(43,127,255,0.05);
-  border-top: 2px solid var(--blue);
+  background: var(--amber-dim);
+  border-top: 2px solid var(--amber);
 }
-
-.svc-name--blue { color: var(--blue); }
-.svc-desc--mt { margin-top: 10px; }
+.svc-card.svc-recovery:hover { background: rgba(245,158,11,0.16); }
+.svc-card.svc-recovery .svc-name { color: var(--amber); }
+.svc-card.svc-recovery .svc-icon { color: var(--amber); opacity: 0.8; }
 
 .svc-card.featured {
   grid-column: 1 / -1;
@@ -361,8 +458,9 @@ section {
   gap: 24px;
   align-items: center;
 }
-.svc-card.featured:hover { background: rgba(43,127,255,0.18); }
-.svc-card.featured .svc-name { font-size: 28px; color: var(--blue); }
+.svc-card.featured:hover { background: rgba(43,127,255,0.16); }
+.svc-card.featured .svc-name { font-size: 20px; color: var(--blue); }
+.svc-card.featured .svc-icon { color: var(--blue); opacity: 0.9; }
 
 .featured-badge {
   display: inline-block;
@@ -378,13 +476,13 @@ section {
 }
 
 .featured-right {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 /* ── PORTFOLIO ── */
-#portfolio { background: var(--bg); }
+#portfolio { background: var(--bg2); }
 
 .portfolio-header {
   display: flex;
@@ -399,12 +497,12 @@ section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  background: var(--chrome);
+  border: 1px solid var(--chrome);
 }
 
 .proj-card {
-  background: var(--bg);
+  background: var(--bg2);
   padding: 32px 28px;
   position: relative;
   overflow: hidden;
@@ -416,7 +514,7 @@ section {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 2px;
-  background: var(--blue);
+  background: var(--amber);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s;
@@ -426,22 +524,23 @@ section {
 
 .proj-card.large {
   grid-column: span 2;
-  background: var(--bg2);
+  background: var(--bg3);
 }
 
 .proj-tag {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 2px;
   color: var(--amber);
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .proj-name {
-  font-family: var(--font-display);
-  font-size: 28px;
-  letter-spacing: 1px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.3px;
   margin-bottom: 10px;
   color: var(--white);
 }
@@ -449,7 +548,7 @@ section {
 .proj-desc {
   font-size: 13px;
   color: var(--muted);
-  line-height: 1.65;
+  line-height: 1.7;
   margin-bottom: 20px;
 }
 
@@ -459,9 +558,9 @@ section {
   flex-wrap: wrap;
 }
 .tech-pill {
-  background: var(--blue-dim);
-  border: 1px solid var(--border);
-  color: rgba(43,127,255,0.9);
+  background: var(--amber-dim);
+  border: 1px solid rgba(245,158,11,0.2);
+  color: rgba(245,158,11,0.85);
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 1px;
@@ -474,42 +573,44 @@ section {
   top: 20px; right: 24px;
   font-family: var(--font-display);
   font-size: 64px;
-  color: rgba(43,127,255,0.05);
+  color: rgba(255,255,255,0.03);
   line-height: 1;
   pointer-events: none;
 }
 
 /* ── DEPOIMENTOS ── */
-#depoimentos { background: var(--bg2); }
+#depoimentos { background: var(--bg); }
 
 .dep-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  background: var(--chrome);
+  border: 1px solid var(--chrome);
   margin-top: 56px;
 }
 
 .dep-card {
-  background: var(--bg2);
-  padding: 32px 28px;
+  background: var(--bg);
+  padding: 36px 28px;
   position: relative;
+  transition: background 0.2s;
 }
+.dep-card:hover { background: var(--bg2); }
 
 .dep-quote {
   font-family: var(--font-display);
-  font-size: 48px;
-  color: var(--blue);
+  font-size: 56px;
+  color: var(--amber);
   line-height: 0.7;
-  margin-bottom: 16px;
-  opacity: 0.4;
+  margin-bottom: 18px;
+  opacity: 0.35;
 }
 
 .dep-text {
   font-size: 14px;
-  color: rgba(180,200,240,0.7);
-  line-height: 1.7;
+  color: var(--muted);
+  line-height: 1.75;
   margin-bottom: 24px;
   font-weight: 300;
   font-style: italic;
@@ -517,8 +618,8 @@ section {
 
 .dep-stars {
   display: flex;
-  gap: 3px;
-  margin-bottom: 16px;
+  gap: 4px;
+  margin-bottom: 20px;
 }
 .dep-star {
   width: 12px; height: 12px;
@@ -532,32 +633,34 @@ section {
   gap: 12px;
 }
 .dep-avatar {
-  width: 38px; height: 38px;
+  width: 40px; height: 40px;
   border-radius: 50%;
-  background: var(--blue-dim);
-  border: 1px solid var(--border-hover);
+  background: var(--bg3);
+  border: 1px solid var(--chrome);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-size: 16px;
-  color: var(--blue);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
   flex-shrink: 0;
+  letter-spacing: 1px;
 }
 .dep-name {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--white);
 }
 .dep-role {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--muted);
+  color: var(--faint);
   letter-spacing: 1px;
+  margin-top: 2px;
 }
 
 /* ── CONTATO ── */
-#contato { background: var(--bg); }
+#contato { background: var(--bg2); }
 
 .contato-layout {
   display: grid;
@@ -567,32 +670,31 @@ section {
   align-items: start;
 }
 
-.contato-info { }
-
 .contato-item {
   display: flex;
   align-items: flex-start;
   gap: 16px;
   padding: 20px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--chrome);
 }
-.contato-item:first-child { border-top: 1px solid var(--border); }
+.contato-item:first-child { border-top: 1px solid var(--chrome); }
 
 .contato-icon {
   width: 40px; height: 40px;
-  background: var(--blue-dim);
-  border: 1px solid var(--border);
-  border-radius: 3px;
+  background: var(--bg3);
+  border: 1px solid var(--chrome);
+  border-radius: var(--r);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: var(--chrome-icon);
 }
 .contato-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 2px;
-  color: var(--muted);
+  color: var(--faint);
   text-transform: uppercase;
   margin-bottom: 4px;
 }
@@ -602,12 +704,39 @@ section {
   color: var(--white);
 }
 .contato-value a { color: var(--blue); text-decoration: none; }
+.contato-value a:hover { text-decoration: underline; }
 
 /* ── FORM ── */
 .form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.form-input, .form-textarea {
+  background: var(--bg);
+  border: 1px solid var(--chrome);
+  color: var(--white);
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  border-radius: var(--r);
+  outline: none;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--faint); }
+.form-input:focus, .form-textarea:focus { border-color: rgba(43,127,255,0.6); }
+.form-textarea { min-height: 120px; }
 
 .form-input.error, .form-textarea.error { border-color: #ef4444; }
-.form-input.valid, .form-textarea.valid { border-color: rgba(43,127,255,0.5); }
+.form-input.valid, .form-textarea.valid { border-color: rgba(43,127,255,0.4); }
 .field-error {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -615,34 +744,6 @@ section {
   letter-spacing: 1px;
   min-height: 14px;
 }
-
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-.form-group { display: flex; flex-direction: column; gap: 6px; }
-
-.form-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-
-.form-input, .form-textarea {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  color: var(--white);
-  padding: 12px 16px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  border-radius: 3px;
-  outline: none;
-  transition: border-color 0.2s;
-  resize: vertical;
-}
-.form-input::placeholder, .form-textarea::placeholder { color: rgba(180,200,240,0.25); }
-.form-input:focus, .form-textarea:focus { border-color: var(--blue); }
-.form-textarea { min-height: 120px; }
 
 .form-submit {
   background: var(--blue);
@@ -653,23 +754,20 @@ section {
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  border-radius: 3px;
+  border-radius: var(--r);
   cursor: pointer;
   transition: opacity 0.2s, transform 0.2s;
   align-self: flex-start;
 }
 .form-submit:hover { opacity: 0.85; transform: translateY(-1px); }
+.form-submit:disabled { cursor: not-allowed; }
 
-.form-note {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: -8px;
-}
+.form-note { font-size: 12px; color: var(--muted); margin-top: -8px; }
 
 /* ── FOOTER ── */
 footer {
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
+  background: var(--bg);
+  border-top: 1px solid var(--chrome);
   padding: 40px 5%;
   display: flex;
   justify-content: space-between;
@@ -680,7 +778,7 @@ footer {
 
 .footer-logo {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 2px;
   color: var(--white);
 }
@@ -688,15 +786,15 @@ footer {
 
 .footer-copy {
   font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 1.5px;
+  font-size: 11px;
+  color: var(--faint);
+  letter-spacing: 1px;
 }
 
 .footer-credit {
   font-family: var(--font-mono);
-  font-size: 10px;
-  color: rgba(43,127,255,0.4);
+  font-size: 11px;
+  color: var(--faint);
   letter-spacing: 1px;
 }
 
@@ -706,15 +804,15 @@ footer {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.hero-tag    { animation: fadeUp 0.6s ease both; }
-.hero-h1     { animation: fadeUp 0.6s 0.1s ease both; }
-.hero-sub    { animation: fadeUp 0.6s 0.2s ease both; }
-.hero-actions{ animation: fadeUp 0.6s 0.3s ease both; }
-.hero-stats  { animation: fadeUp 0.6s 0.2s ease both; }
+.hero-tag     { animation: fadeUp 0.6s ease both; }
+.hero-h1      { animation: fadeUp 0.6s 0.1s ease both; }
+.hero-sub     { animation: fadeUp 0.6s 0.2s ease both; }
+.hero-actions { animation: fadeUp 0.6s 0.3s ease both; }
+.hero-stats   { animation: fadeUp 0.6s 0.2s ease both; }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .services-layout, .contato-layout { grid-template-columns: 1fr; gap: 40px; }
+@media (max-width: 960px) {
+  .services-layout, .contato-layout, .sobre-layout { grid-template-columns: 1fr; gap: 40px; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .proj-card.large { grid-column: span 1; }
   .dep-grid { grid-template-columns: 1fr; }
@@ -733,6 +831,7 @@ footer {
 <nav>
   <a href="#hero" class="nav-logo">LT<span>ECH</span></a>
   <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
     <li><a href="#servicos">Serviços</a></li>
     <li><a href="#portfolio">Projetos</a></li>
     <li><a href="#depoimentos">Clientes</a></li>
@@ -757,7 +856,7 @@ footer {
     <p class="hero-sub">Suporte técnico especializado, desenvolvimento de sistemas e criação de sites sob medida. Atendimento presencial e remoto no ABC Paulista.</p>
     <div class="hero-actions">
       <a href="https://wa.me/5511991290185" class="btn-primary" target="_blank" rel="noopener">Falar no WhatsApp</a>
-      <a href="#portfolio" class="btn-outline">Ver Projetos</a>
+      <a href="#portfolio" class="btn-outline">Ver projetos</a>
     </div>
   </div>
 
@@ -777,12 +876,89 @@ footer {
   </div>
 </section>
 
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-tag">Sobre</div>
+  <h2 class="section-title">Lucas Martins</h2>
+
+  <div class="sobre-layout">
+    <div>
+      <p class="sobre-bio">
+        Desenvolvedor web e especialista em suporte técnico com <strong>mais de 10 anos de experiência</strong> atendendo clientes e empresas no ABC Paulista.
+      </p>
+      <p class="sobre-bio">
+        Construo sistemas completos do zero — da conversa inicial ao deploy — com foco em resolver problemas reais de negócio. Ao mesmo tempo, ofereço suporte técnico presencial com diagnóstico rápido e resultado garantido.
+      </p>
+      <p class="sobre-bio">
+        Trabalho com <strong>JavaScript, Node.js, Supabase e integrações de IA</strong> para entregar soluções modernas, leves e fáceis de usar. Sem burocracia, sem enrolação.
+      </p>
+      <div class="sobre-links">
+        <a href="https://github.com/LtechInfo" class="sobre-link" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://wa.me/5511991290185" class="sobre-link" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.45a16 16 0 006.29 6.29l1.51-1.51a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          WhatsApp
+        </a>
+        <a href="#contato" class="sobre-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Enviar mensagem
+        </a>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">Desenvolvimento</div>
+        <div class="skill-pills">
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">HTML / CSS</span>
+          <span class="skill-pill">Supabase</span>
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">REST APIs</span>
+          <span class="skill-pill">PWA</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Automação & IA</div>
+        <div class="skill-pills">
+          <span class="skill-pill">WhatsApp API</span>
+          <span class="skill-pill">Google Gemini</span>
+          <span class="skill-pill">Google Sheets API</span>
+          <span class="skill-pill">Webhooks</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Infraestrutura</div>
+        <div class="skill-pills">
+          <span class="skill-pill">GitHub Pages</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">Redes TCP/IP</span>
+          <span class="skill-pill">Windows Server</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Suporte Técnico</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Diagnóstico de hardware</span>
+          <span class="skill-pill">Formatação</span>
+          <span class="skill-pill">Montagem de PCs</span>
+          <span class="skill-pill">Recuperação de dados</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVIÇOS -->
 <section id="servicos">
   <div class="services-layout">
-    <div class="services-left">
+    <div>
       <div class="section-tag">Serviços</div>
-      <h2 class="section-title">O QUE<br>FAZEMOS</h2>
+      <h2 class="section-title">O que fazemos</h2>
       <p class="section-desc">Do suporte técnico ao sistema completo para o seu negócio — tudo com agilidade, transparência e garantia de resultado.</p>
     </div>
     <div></div>
@@ -791,67 +967,72 @@ footer {
   <div class="services-grid">
     <div class="svc-card">
       <svg class="svc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="6" width="32" height="22" rx="2" stroke="#2b7fff" stroke-width="1.5" fill="none"/>
-        <line x1="12" y1="28" x2="12" y2="32" stroke="#2b7fff" stroke-width="1.5"/>
-        <line x1="24" y1="28" x2="24" y2="32" stroke="#2b7fff" stroke-width="1.5"/>
-        <line x1="8" y1="32" x2="28" y2="32" stroke="#2b7fff" stroke-width="1.5"/>
-        <line x1="8" y1="14" x2="28" y2="14" stroke="#2b7fff" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
-        <line x1="8" y1="18" x2="20" y2="18" stroke="#2b7fff" stroke-width="1" stroke-dasharray="3 2" opacity="0.4"/>
+        <rect x="2" y="6" width="32" height="22" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="12" y1="28" x2="12" y2="32" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="24" y1="28" x2="24" y2="32" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="8" y1="32" x2="28" y2="32" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="8" y1="14" x2="28" y2="14" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" opacity="0.5"/>
+        <line x1="8" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="1" stroke-dasharray="3 2" opacity="0.35"/>
       </svg>
-      <div class="svc-name">FORMATAÇÃO</div>
+      <div class="svc-name">Formatação</div>
       <div class="svc-desc">Reinstalação completa do sistema com backup seguro, drivers atualizados e configuração personalizada.</div>
     </div>
 
     <div class="svc-card">
       <svg class="svc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 4 L32 11 L32 25 L18 32 L4 25 L4 11 Z" stroke="#2b7fff" stroke-width="1.5" fill="none"/>
-        <circle cx="18" cy="18" r="5" stroke="#2b7fff" stroke-width="1.5" fill="none"/>
-        <line x1="18" y1="4" x2="18" y2="13" stroke="#2b7fff" stroke-width="1" opacity="0.5"/>
-        <line x1="18" y1="23" x2="18" y2="32" stroke="#2b7fff" stroke-width="1" opacity="0.5"/>
-        <line x1="4" y1="18" x2="13" y2="18" stroke="#2b7fff" stroke-width="1" opacity="0.5"/>
-        <line x1="23" y1="18" x2="32" y2="18" stroke="#2b7fff" stroke-width="1" opacity="0.5"/>
+        <path d="M18 4 L32 11 L32 25 L18 32 L4 25 L4 11 Z" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="18" y1="4" x2="18" y2="13" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <line x1="18" y1="23" x2="18" y2="32" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <line x1="4" y1="18" x2="13" y2="18" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <line x1="23" y1="18" x2="32" y2="18" stroke="currentColor" stroke-width="1" opacity="0.4"/>
       </svg>
-      <div class="svc-name">MANUTENÇÃO</div>
+      <div class="svc-name">Manutenção</div>
       <div class="svc-desc">Diagnóstico completo, limpeza, troca de peças e otimização de desempenho para hardware e software.</div>
     </div>
 
     <div class="svc-card">
       <svg class="svc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="10" width="14" height="18" rx="1.5" stroke="#2b7fff" stroke-width="1.5" fill="none"/>
-        <rect x="20" y="6" width="14" height="22" rx="1.5" stroke="#2b7fff" stroke-width="1.5" fill="none"/>
-        <line x1="16" y1="19" x2="20" y2="19" stroke="#2b7fff" stroke-width="1.5"/>
-        <circle cx="16" cy="19" r="1.5" fill="#2b7fff"/>
-        <circle cx="20" cy="19" r="1.5" fill="#2b7fff"/>
+        <rect x="2" y="10" width="14" height="18" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="20" y="6" width="14" height="22" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="16" y1="19" x2="20" y2="19" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="16" cy="19" r="1.5" fill="currentColor"/>
+        <circle cx="20" cy="19" r="1.5" fill="currentColor"/>
       </svg>
-      <div class="svc-name">MONTAGEM</div>
-      <div class="svc-desc">Montagem de computadores sob medida para jogos, trabalho ou uso cotidiano, com garantia e suporte.</div>
+      <div class="svc-name">Montagem de PCs</div>
+      <div class="svc-desc">Montagem sob medida para jogos, trabalho ou uso cotidiano, com garantia e suporte pós-venda.</div>
     </div>
 
     <div class="svc-card">
       <svg class="svc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 28 C4 14 12 6 18 6 C24 6 32 14 32 28" stroke="#2b7fff" stroke-width="1.5" fill="none"/>
-        <line x1="10" y1="32" x2="26" y2="32" stroke="#2b7fff" stroke-width="1.5"/>
-        <line x1="18" y1="24" x2="18" y2="32" stroke="#2b7fff" stroke-width="1.5"/>
-        <circle cx="18" cy="22" r="2.5" fill="#2b7fff" opacity="0.7"/>
+        <path d="M4 28 C4 14 12 6 18 6 C24 6 32 14 32 28" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="10" y1="32" x2="26" y2="32" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="18" y1="24" x2="18" y2="32" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="18" cy="22" r="2.5" fill="currentColor" opacity="0.6"/>
       </svg>
-      <div class="svc-name">CONSULTORIA</div>
+      <div class="svc-name">Consultoria em TI</div>
       <div class="svc-desc">Orientação técnica para compra de equipamentos, segurança de dados, redes e infraestrutura de TI.</div>
     </div>
 
     <div class="svc-card svc-recovery">
       <svg class="svc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 10 L12 18 L4 26" stroke="#2b7fff" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <line x1="16" y1="26" x2="32" y2="26" stroke="#2b7fff" stroke-width="2" stroke-linecap="round"/>
+        <path d="M4 10 L12 18 L4 26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="16" y1="26" x2="32" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
-      <div class="svc-name svc-name--blue">RECUPERAÇÃO DE ARQUIVOS</div>
-      <div class="svc-desc">Recuperação de dados em HDs, SSDs e pendrives com técnicas avançadas. Diagnóstico gratuito.</div>
+      <div class="svc-name">Recuperação de arquivos</div>
+      <div class="svc-desc">Recuperação de dados em HDs, SSDs e pendrives com diagnóstico gratuito e atendimento ágil.</div>
     </div>
 
     <div class="svc-card featured">
       <div>
         <span class="featured-badge">Destaque</span>
-        <div class="svc-name">SISTEMAS &amp; SITES SOB MEDIDA</div>
-        <div class="svc-desc svc-desc--mt">Desenvolvimento completo de sistemas web, portais administrativos, automações e sites profissionais para o seu negócio.</div>
+        <div class="svc-name">
+          <svg class="svc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;margin-bottom:0;">
+            <path d="M4 10 L12 18 L4 26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="16" y1="26" x2="32" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>Sistemas &amp; sites sob medida
+        </div>
+        <div class="svc-desc" style="margin-top:10px;">Desenvolvimento completo de sistemas web, portais administrativos, automações e sites profissionais para o seu negócio.</div>
       </div>
       <div class="featured-right">
         Sistemas de gestão, agendamento, controle de estoque, sites institucionais, landing pages e muito mais — entregues com suporte contínuo e sem complicação.
@@ -865,7 +1046,7 @@ footer {
   <div class="portfolio-header">
     <div>
       <div class="section-tag">Portfólio</div>
-      <h2 class="section-title">PROJETOS<br>ENTREGUES</h2>
+      <h2 class="section-title">Projetos entregues</h2>
     </div>
     <p class="section-desc">Sistemas reais desenvolvidos para clientes reais — cada um com desafios únicos e soluções personalizadas.</p>
   </div>
@@ -874,7 +1055,7 @@ footer {
     <div class="proj-card large">
       <div class="proj-num">01</div>
       <div class="proj-tag">Sistema Web · Colégio ENAU</div>
-      <div class="proj-name">PORTAL DE RESERVAS</div>
+      <div class="proj-name">Portal de Reservas</div>
       <div class="proj-desc">Sistema completo de reserva de espaços para escola com autenticação por perfil, calendário interativo, chat em tempo real, mural de avisos e painel administrativo. Mais de 10 funcionalidades integradas em uma única plataforma.</div>
       <div class="proj-tech">
         <span class="tech-pill">HTML/JS</span>
@@ -887,9 +1068,9 @@ footer {
 
     <div class="proj-card">
       <div class="proj-num">02</div>
-      <div class="proj-tag">Bot · SK Play</div>
-      <div class="proj-name">BOT DE PAGAMENTOS</div>
-      <div class="proj-desc">Automação via WhatsApp com IA para análise de comprovantes de pagamento, validação automática e aprovação manual integrada ao Google Sheets.</div>
+      <div class="proj-tag">Automação · SK Play</div>
+      <div class="proj-name">Bot de Pagamentos</div>
+      <div class="proj-desc">Bot para WhatsApp com IA que analisa comprovantes de pagamento, valida automaticamente e integra aprovação ao Google Sheets.</div>
       <div class="proj-tech">
         <span class="tech-pill">Node.js</span>
         <span class="tech-pill">Gemini AI</span>
@@ -900,8 +1081,8 @@ footer {
     <div class="proj-card">
       <div class="proj-num">03</div>
       <div class="proj-tag">Sistema · Colégio ENAU</div>
-      <div class="proj-name">CONSULTA DE ALUNOS</div>
-      <div class="proj-desc">Sistema de consulta com 368 alunos cadastrados, busca avançada, filtros por turma, perfis por cargo e painel de CRUD completo.</div>
+      <div class="proj-name">Consulta de Alunos</div>
+      <div class="proj-desc">Base de 368 alunos com busca avançada, filtros por turma, perfis por cargo e painel de CRUD completo com controle de acesso.</div>
       <div class="proj-tech">
         <span class="tech-pill">HTML/JS</span>
         <span class="tech-pill">Supabase</span>
@@ -912,8 +1093,8 @@ footer {
     <div class="proj-card">
       <div class="proj-num">04</div>
       <div class="proj-tag">Ferramenta · Colégio ENAU</div>
-      <div class="proj-name">FOLHA DE PONTO</div>
-      <div class="proj-desc">Gerador de folhas de ponto por professor com grade de horários detalhada por segmento escolar. Exportação automática e layout pronto para impressão.</div>
+      <div class="proj-name">Folha de Ponto</div>
+      <div class="proj-desc">Gerador de folhas de ponto por professor com grade por segmento escolar. Exportação automática com layout pronto para impressão.</div>
       <div class="proj-tech">
         <span class="tech-pill">HTML/JS</span>
         <span class="tech-pill">Print CSS</span>
@@ -923,8 +1104,8 @@ footer {
     <div class="proj-card">
       <div class="proj-num">05</div>
       <div class="proj-tag">Sistema · Colégio ENAU</div>
-      <div class="proj-name">REGISTRO DE OCORRÊNCIAS</div>
-      <div class="proj-desc">Sistema de registro de ocorrências escolares com histórico por aluno, filtros por data e tipo, e painel para coordenação e direção.</div>
+      <div class="proj-name">Registro de Ocorrências</div>
+      <div class="proj-desc">Sistema de ocorrências escolares com histórico por aluno, filtros por data e tipo, e painel para coordenação e direção.</div>
       <div class="proj-tech">
         <span class="tech-pill">HTML/JS</span>
         <span class="tech-pill">Supabase</span>
@@ -937,7 +1118,7 @@ footer {
 <!-- DEPOIMENTOS -->
 <section id="depoimentos">
   <div class="section-tag">Clientes</div>
-  <h2 class="section-title">O QUE DIZEM<br>SOBRE NÓS</h2>
+  <h2 class="section-title">O que dizem sobre nós</h2>
 
   <div class="dep-grid">
     <div class="dep-card">
@@ -984,7 +1165,7 @@ footer {
 <!-- CONTATO -->
 <section id="contato">
   <div class="section-tag">Contato</div>
-  <h2 class="section-title">VAMOS<br>CONVERSAR</h2>
+  <h2 class="section-title">Vamos conversar</h2>
 
   <div class="contato-layout">
     <div class="contato-info">
@@ -992,19 +1173,19 @@ footer {
 
       <div class="contato-item">
         <div class="contato-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2b7fff" stroke-width="1.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.72A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.45a16 16 0 006.29 6.29l1.51-1.51a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
         </div>
         <div>
           <div class="contato-label">WhatsApp</div>
-          <div class="contato-value"><a href="https://wa.me/5511991290185">(11) 99129-0185</a></div>
+          <div class="contato-value"><a href="https://wa.me/5511991290185" target="_blank" rel="noopener">(11) 99129-0185</a></div>
         </div>
       </div>
 
       <div class="contato-item">
         <div class="contato-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2b7fff" stroke-width="1.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
             <circle cx="12" cy="10" r="3"/>
           </svg>
@@ -1017,7 +1198,7 @@ footer {
 
       <div class="contato-item">
         <div class="contato-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2b7fff" stroke-width="1.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="12" cy="12" r="10"/>
             <polyline points="12 6 12 12 16 14"/>
           </svg>
@@ -1030,7 +1211,7 @@ footer {
 
       <div class="contato-item">
         <div class="contato-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2b7fff" stroke-width="1.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <rect x="2" y="3" width="20" height="14" rx="2"/>
             <polyline points="8 21 12 17 16 21"/>
             <line x1="12" y1="17" x2="12" y2="3"/>
@@ -1065,7 +1246,7 @@ footer {
         <label class="form-label" for="field-msg">Mensagem</label>
         <textarea class="form-textarea" id="field-msg" name="mensagem" placeholder="Descreva o que você precisa..."></textarea>
       </div>
-      <button type="submit" class="form-submit" id="submit-btn">Enviar Mensagem</button>
+      <button type="submit" class="form-submit" id="submit-btn">Enviar mensagem</button>
       <p class="form-note" id="form-note"></p>
     </form>
   </div>
@@ -1075,7 +1256,7 @@ footer {
 <footer>
   <div class="footer-logo">LT<span>ECH</span> INFORMÁTICA</div>
   <div class="footer-copy">© 2026 LTech Informática · Todos os direitos reservados</div>
-  <div class="footer-credit">⚡ Since 2026 · Lucas Martins / LTech</div>
+  <div class="footer-credit">Lucas Martins · Rio Grande da Serra SP</div>
 </footer>
 
 <script>
@@ -1105,7 +1286,7 @@ function validateField(field) {
   }
   if (field.id === 'field-tel') {
     const v = field.value.trim();
-    const ok = v === '' || /^[\d\s\(\)\-\+]{8,}$/.test(v);
+    const ok = v === '' || /^[\d\s()\-+]{8,}$/.test(v);
     setFieldState('field-tel', 'err-tel', ok, 'Número inválido.');
     return ok;
   }
@@ -1140,12 +1321,12 @@ contactForm.addEventListener('submit', function(e) {
     const texto = `Olá! Me chamo *${nome.value.trim()}*.\n\n*Assunto:* ${assunto.value.trim()}\n*Tel:* ${tel.value.trim() || 'Não informado'}\n\n${msg.value.trim()}`;
     window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
 
-    btn.textContent = 'Mensagem Enviada!';
+    btn.textContent = 'Mensagem enviada!';
     note.textContent = 'Você foi redirecionado ao WhatsApp.';
     note.style.color = 'var(--blue)';
 
     setTimeout(() => {
-      btn.textContent = 'Enviar Mensagem';
+      btn.textContent = 'Enviar mensagem';
       btn.disabled = false;
       btn.style.opacity = '1';
       note.textContent = '';
@@ -1163,11 +1344,11 @@ const observer = new IntersectionObserver((entries) => {
       el.target.style.transform = 'translateY(0)';
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
-document.querySelectorAll('.svc-card, .proj-card, .dep-card, .contato-item').forEach(el => {
+document.querySelectorAll('.svc-card, .proj-card, .dep-card, .contato-item, .skill-group, .sobre-bio').forEach(el => {
   el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
+  el.style.transform = 'translateY(18px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
 });
